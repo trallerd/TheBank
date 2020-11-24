@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">TheBank</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="sign_in">Sign In</string>
+    <string name="the_bank_icon">The Bank Icon</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="the_bank">The Bank</string>
+    <string name="create">Create</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="cancel">Cancel</string>
+    <string name="welcome_text">Welcome to The Bank, %1$s!</string>
+    <string name="wallet">Wallet</string>
+    <string name="extract">Extract</string>
+    <string name="receive_money">Receive Money</string>
+    <string name="send_money">Send Money</string>
+    <string name="logout">Logout</string>
+</resources>
