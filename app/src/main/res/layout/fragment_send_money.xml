@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20sp"
-    android:background="@color/first_color"
-    tools:context=".SendMoneyFragment" >
+    android:background="@color/white"
+    tools:context=".SendMoneyFragment">
 
     <ImageView
         android:id="@+id/bankSend"
@@ -27,22 +26,11 @@
         android:fontFamily="cursive"
         android:gravity="center"
         android:text="@string/send_money_to"
+        android:textColor="@color/black"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bankSend" />
-
-    <TextView
-        android:id="@+id/txtRecipient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="50dp"
-        android:text="@string/recipient"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtSendorRec" />
 
     <EditText
         android:id="@+id/recipientAnswer"
@@ -50,36 +38,30 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/recipient"
         android:inputType="textPersonName"
+        android:textColorHint="@color/cardview_shadow_start_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtRecipient" />
-
-    <TextView
-        android:id="@+id/txtAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/amount"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@+id/txtRecipient"
-        app:layout_constraintTop_toBottomOf="@+id/recipientAnswer" />
+        app:layout_constraintTop_toBottomOf="@+id/txtSendorRec" />
 
     <EditText
         android:id="@+id/amountAnswer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="@string/amount"
         android:inputType="textPersonName"
+        android:textColorHint="@color/cardview_shadow_start_color"
         app:layout_constraintEnd_toEndOf="@+id/recipientAnswer"
         app:layout_constraintStart_toStartOf="@+id/recipientAnswer"
-        app:layout_constraintTop_toBottomOf="@+id/txtAmount" />
+        app:layout_constraintTop_toBottomOf="@+id/recipientAnswer" />
 
     <Button
         android:id="@+id/btnSend"
@@ -89,8 +71,8 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="62dp"
         android:text="@string/send_money"
-        android:textColor="@color/first_color"
-        app:backgroundTint="@color/white"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/first_color"
         app:cornerRadius="50sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/amountAnswer" />
@@ -102,8 +84,8 @@
         android:layout_marginEnd="42dp"
         android:layout_marginRight="42dp"
         android:text="@string/cancel"
-        android:textColor="@color/first_color"
-        app:backgroundTint="@color/white"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/first_color"
         app:cornerRadius="50sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btnSend" />

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20sp"
-    android:background="@color/first_color"
+    android:background="@color/white"
     tools:context=".MainFragment">
 
     <ImageView
@@ -29,8 +28,8 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="100dp"
         android:text="@string/login"
-        android:textColor="#19916b"
-        app:backgroundTint="@color/white"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/first_color"
         app:cornerRadius="50sp"
         app:layout_constraintStart_toStartOf="@+id/theIcon"
         app:layout_constraintTop_toBottomOf="@+id/theIcon" />
@@ -42,8 +41,8 @@
         android:layout_marginEnd="12dp"
         android:layout_marginRight="12dp"
         android:text="@string/sign_in"
-        android:textColor="#19916b"
-        app:backgroundTint="@color/white"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/first_color"
         app:cornerRadius="50sp"
         app:layout_constraintEnd_toEndOf="@+id/theIcon"
         app:layout_constraintTop_toTopOf="@+id/btLoginBank" />
@@ -55,7 +54,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="cursive"
         android:text="@string/the_bank"
-        android:textColor="@color/white"
+        android:textColor="@color/first_color"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
