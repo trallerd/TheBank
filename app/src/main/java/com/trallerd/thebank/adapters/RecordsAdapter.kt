@@ -1,5 +1,6 @@
 package com.trallerd.thebank.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,6 @@ class RecordsAdapter : RecyclerView.Adapter<RecordsAdapter.RecorsHolder>() {
     private val records = Records.getALL()
     override fun getItemCount() = records.size
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         RecorsHolder(
                 LayoutInflater
@@ -22,6 +22,7 @@ class RecordsAdapter : RecyclerView.Adapter<RecordsAdapter.RecorsHolder>() {
         )
 
     override fun onBindViewHolder(holder: RecorsHolder, position: Int) {
+        Log.i("","records")
         val record = records[position]
         holder.fillView(record)
     }
@@ -31,7 +32,7 @@ class RecordsAdapter : RecyclerView.Adapter<RecordsAdapter.RecorsHolder>() {
             itemView.lbPerson.text = record.person
             itemView.lbRemarks.text = record.remarks
             itemView.lbInfoAmount.text = record.value.toString()
-            itemView.lbDateInfo.text = R.string.date.toString()
+            itemView.lbDateInfo.text = record.registredAt.toString()
         }
     }
 

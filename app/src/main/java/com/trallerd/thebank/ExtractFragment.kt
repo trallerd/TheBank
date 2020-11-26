@@ -4,12 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.stone.vega.library.VegaLayoutManager
 import com.trallerd.thebank.adapters.RecordsAdapter
-import kotlinx.android.synthetic.main.fragment_extract.*
+import kotlinx.android.synthetic.main.fragment_extract.view.*
 
 
 class ExtractFragment : Fragment() {
@@ -18,7 +16,10 @@ class ExtractFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        val view = inflater.inflate(R.layout.fragment_extract, container, false)
+        view.listRecords.adapter = RecordsAdapter()
+        view.listRecords.layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.VERTICAL,false)
 
-        return inflater.inflate(R.layout.fragment_extract, container, false)
+        return view
     }
 }
