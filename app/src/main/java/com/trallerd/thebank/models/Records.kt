@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import java.math.BigDecimal
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -19,7 +20,7 @@ class Records(
         childColumns = ["fk_user"]
     )
     @ColumnInfo(name = "fk_user")
-    var fkUser: Long,
+    var fkUser: Long?,
     var registredAt: String = SimpleDateFormat("dd/MM/yyyy HH:mm").format(Date())
 ) {
     @PrimaryKey(autoGenerate = true)

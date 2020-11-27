@@ -125,6 +125,9 @@
         <action
             android:id="@+id/sendToConfirmatio"
             app:destination="@id/confirmationFragment" />
+        <argument
+            android:name="flag"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/confirmationFragment"
@@ -140,5 +143,8 @@
         <argument
             android:name="sendTo"
             app:argType="string" />
+        <argument
+            android:name="flag"
+            app:argType="boolean" />
     </fragment>
 </navigation>

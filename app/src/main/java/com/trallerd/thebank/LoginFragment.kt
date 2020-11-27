@@ -39,7 +39,6 @@ class LoginFragment : Fragment(), View.OnClickListener{
                 if (!TextUtils.isEmpty(userName.text.toString())||!TextUtils.isEmpty(password.text.toString())){
                     val login =  allAdapter.login(userName.text.toString(),password.text.toString())
                     if (login!=null){
-                        Controller.users = login
                         val bundle = bundleOf("user" to login.username)
                         navController!!.navigate(R.id.loginToHome, bundle)
                     }else{

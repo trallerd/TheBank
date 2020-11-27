@@ -52,9 +52,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.btnWallet->{
-                val money = Money(BigDecimal(allAdapter.getBalance(Controller.users!!.id!!)))
-                val income = Money(BigDecimal(allAdapter.getIncomes(Controller.users!!.id!!)))
-                val spent = Money(BigDecimal(allAdapter.getSpent(Controller.users!!.id!!)))
+                val money = Money(BigDecimal(allAdapter.getBalance(Controller.users.id!!)))
+                val income = Money(BigDecimal(allAdapter.getIncomes(Controller.users.id!!)))
+                val spent = Money(BigDecimal(allAdapter.getSpent(Controller.users.id!!)))
 
                 val bundle = bundleOf(
                         "money" to money,
@@ -64,8 +64,16 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 navController!!.navigate(R.id.homeToWallet,bundle)
             }
             R.id.btnExtract->navController!!.navigate(R.id.homeToExtract)
-            R.id.btnSenMoney->navController!!.navigate(R.id.homeToSendMOney)
-            R.id.btnReceiveMoney->navController!!.navigate(R.id.homeToSendMOney)
+            R.id.btnSenMoney->{
+                val flag = false
+                val bun = bundleOf("flag" to flag)
+                navController!!.navigate(R.id.homeToSendMOney,bun)
+            }
+            R.id.btnReceiveMoney->{
+                val flag = true
+                val bun = bundleOf("flag" to flag )
+                navController!!.navigate(R.id.homeToSendMOney,bun)
+            }
             R.id.btnLogout->activity?.onBackPressed()
         }
     }

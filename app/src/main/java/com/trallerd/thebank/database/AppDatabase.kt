@@ -9,7 +9,7 @@ import com.trallerd.thebank.models.Accounts
 import com.trallerd.thebank.models.Records
 import com.trallerd.thebank.models.Users
 
-@Database(entities = [Users::class, Records::class, Accounts::class], version = 1)
+@Database(entities = [Users::class, Records::class, Accounts::class], version = 1,exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun userDAO(): UsersDAO
     abstract fun recordDAO(): RecordsDAO

@@ -18,4 +18,6 @@ class Accounts(
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Long? = null
+
+    override fun equals(other: Any?) = other is Accounts && this.id == other.id;
 }

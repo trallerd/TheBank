@@ -10,4 +10,6 @@ class Users(
 )  {
     @PrimaryKey(autoGenerate = true)
     var id: Long? = null
+
+    override fun equals(other: Any?) = other is Users && this.id == other.id;
 }

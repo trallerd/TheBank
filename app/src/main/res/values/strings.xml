@@ -34,4 +34,7 @@
     <string name="user_error">User doesn\'t exist!!</string>
     <string name="plus_btn">"Add "</string>
     <string name="txt_balance">Balance</string>
+    <string name="ok_icon">OK</string>
+    <string name="receive_text_question">Who is sending money to you?</string>
+    <string name="receive_from">Receive from</string>
 </resources>

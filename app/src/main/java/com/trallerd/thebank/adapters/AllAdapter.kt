@@ -2,6 +2,7 @@ package com.trallerd.thebank.adapters
 
 import android.content.Context
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.trallerd.thebank.R
 import com.trallerd.thebank.database.AppDatabase
+import com.trallerd.thebank.database.Controller
 import com.trallerd.thebank.database.daos.AccountsDAO
 import com.trallerd.thebank.database.daos.RecordsDAO
 import com.trallerd.thebank.database.daos.UsersDAO
@@ -24,7 +26,7 @@ class AllAdapter(context: Context?) : RecyclerView.Adapter<AllAdapter.RecorsHold
     private val daoAccounts: AccountsDAO
 
     private val records: MutableList<Records>
-    
+
     init {
         //Create db instance
         val db = Room.databaseBuilder(
@@ -41,8 +43,12 @@ class AllAdapter(context: Context?) : RecyclerView.Adapter<AllAdapter.RecorsHold
         daoAccounts = db.accountDAO()
 
         //Get all Records
-        records = daoRecords.getAllById(1).toMutableList()
 
+        if (Controller.users.id!=null){
+            records = Controller.users.id?.let { daoRecords.getAllById(it).toMutableList() }!!
+        }else{
+            records = daoRecords.getAll().toMutableList()
+        }
     }
 
     fun add(user: Users){
@@ -52,13 +58,21 @@ class AllAdapter(context: Context?) : RecyclerView.Adapter<AllAdapter.RecorsHold
         account.id = daoAccounts.insert(account)
     }
 
-    fun login(username: String, password: String) = daoUsers.getUser(username,password)
+    fun login(username: String, password: String):Users {
+        val user = daoUsers.getUser(username,password)
+        if (user!=null){
+            Controller.users = user
+        }
+        return user
+    }
 
     fun getBalance(idUser: Long) = daoAccounts.getBalance(idUser)
 
     fun getIncomes(idUser: Long) = daoRecords.getIncomes(idUser)
 
     fun getSpent(idUser: Long) = daoRecords.getSpent(idUser)
+
+    fun insertRecord(record: Records) = daoRecords.insert(record)
 
 
     override fun getItemCount() = records.size
