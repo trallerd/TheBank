@@ -2,7 +2,6 @@ package com.trallerd.thebank.adapters
 
 import android.content.Context
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +10,8 @@ import androidx.room.Room
 import com.trallerd.thebank.R
 import com.trallerd.thebank.database.AppDatabase
 import com.trallerd.thebank.database.Controller
-import com.trallerd.thebank.database.daos.AccountsDAO
 import com.trallerd.thebank.database.daos.RecordsDAO
 import com.trallerd.thebank.database.daos.UsersDAO
-import com.trallerd.thebank.models.Accounts
 import com.trallerd.thebank.models.Records
 import com.trallerd.thebank.models.Users
 import kotlinx.android.synthetic.main.item_records.view.*
@@ -23,7 +20,6 @@ import kotlinx.android.synthetic.main.item_records.view.*
 class AllAdapter(context: Context?) : RecyclerView.Adapter<AllAdapter.RecorsHolder>() {
     private val daoRecords: RecordsDAO
     private val daoUsers: UsersDAO
-    private val daoAccounts: AccountsDAO
 
     private val records: MutableList<Records>
 
@@ -40,7 +36,6 @@ class AllAdapter(context: Context?) : RecyclerView.Adapter<AllAdapter.RecorsHold
         //Get DAO
         daoRecords = db.recordDAO()
         daoUsers = db.userDAO()
-        daoAccounts = db.accountDAO()
 
         //Get all Records
 
@@ -54,8 +49,6 @@ class AllAdapter(context: Context?) : RecyclerView.Adapter<AllAdapter.RecorsHold
     fun add(user: Users){
 
         user.id = daoUsers.insert(user)
-        val account = Accounts(0.0, user.id!!)
-        account.id = daoAccounts.insert(account)
     }
 
     fun login(username: String, password: String):Users {
@@ -66,11 +59,10 @@ class AllAdapter(context: Context?) : RecyclerView.Adapter<AllAdapter.RecorsHold
         return user
     }
 
-    fun getBalance(idUser: Long) = daoAccounts.getBalance(idUser)
 
-    fun getIncomes(idUser: Long) = daoRecords.getIncomes(idUser)
+    fun getIncomes(idUser: Long) = daoRecords.getWallet(idUser,1)
 
-    fun getSpent(idUser: Long) = daoRecords.getSpent(idUser)
+    fun getSpent(idUser: Long) = daoRecords.getWallet(idUser,0)
 
     fun insertRecord(record: Records) = daoRecords.insert(record)
 
@@ -94,13 +86,13 @@ class AllAdapter(context: Context?) : RecyclerView.Adapter<AllAdapter.RecorsHold
             if (record.receive){
                 itemView.lbPerson.text = record.person
                 itemView.lbRemarks.text = record.remarks
-                itemView.lbInfoAmount.setTextColor(Color.parseColor(R.color.green.toString()))
+                itemView.lbInfoAmount.setTextColor(Color.parseColor("#008000"))
                 itemView.lbInfoAmount.text = "+"+record.value.toString()
                 itemView.lbDateInfo.text = record.registredAt
             }else{
                 itemView.lbPerson.text = record.person
                 itemView.lbRemarks.text = record.remarks
-                itemView.lbInfoAmount.setTextColor(Color.parseColor(R.color.red.toString()))
+                itemView.lbInfoAmount.setTextColor(Color.parseColor("#ff0000"))
                 itemView.lbInfoAmount.text = "-"+record.value.toString()
                 itemView.lbDateInfo.text = record.registredAt
             }

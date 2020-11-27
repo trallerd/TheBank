@@ -8,7 +8,7 @@
     android:layout_margin="10sp"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="15sp"
-    app:cardElevation="10dp">
+    app:cardElevation="5sp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -35,7 +35,6 @@
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
             android:text="@string/info_doub"
-            android:textColor="@color/cardview_shadow_start_color"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/lbPerson" />

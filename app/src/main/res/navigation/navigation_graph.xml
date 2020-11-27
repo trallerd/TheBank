@@ -101,16 +101,20 @@
         tools:layout="@layout/fragment_wallet" >
         <action
             android:id="@+id/walletToExtract"
-            app:destination="@id/extractFragment" />
+            app:destination="@id/extractFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <argument
             android:name="money"
-            app:argType="com.trallerd.thebank.models.Money" />
+            app:argType="float" />
         <argument
             android:name="income"
-            app:argType="com.trallerd.thebank.models.Money" />
+            app:argType="float" />
         <argument
             android:name="spent"
-            app:argType="com.trallerd.thebank.models.Money" />
+            app:argType="float" />
     </fragment>
     <fragment
         android:id="@+id/extractFragment"
@@ -128,6 +132,9 @@
         <argument
             android:name="flag"
             app:argType="boolean" />
+        <argument
+            android:name="money"
+            app:argType="float" />
     </fragment>
     <fragment
         android:id="@+id/confirmationFragment"
@@ -139,12 +146,18 @@
             app:argType="string" />
         <argument
             android:name="amount"
-            app:argType="com.trallerd.thebank.models.Money" />
+            app:argType="float" />
         <argument
             android:name="sendTo"
             app:argType="string" />
         <argument
             android:name="flag"
             app:argType="boolean" />
+        <action
+            android:id="@+id/confirmToHome"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/confirmToExtract"
+            app:destination="@id/extractFragment" />
     </fragment>
 </navigation>

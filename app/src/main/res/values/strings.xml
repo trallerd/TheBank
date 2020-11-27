@@ -37,4 +37,5 @@
     <string name="ok_icon">OK</string>
     <string name="receive_text_question">Who is sending money to you?</string>
     <string name="receive_from">Receive from</string>
+    <string name="not_enough_money">Sorry, you don\'t have enough money!!</string>
 </resources>

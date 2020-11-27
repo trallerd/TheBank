@@ -9,19 +9,19 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.trallerd.thebank.models.Money
+import kotlin.properties.Delegates
 
 class WalletFragment : Fragment(), View.OnClickListener {
     var navController: NavController? = null
-    lateinit var money: Money
-    lateinit var income: Money
-    lateinit var spent: Money
+    var money by Delegates.notNull<Float>()
+    var income by Delegates.notNull<Float>()
+    var spent by Delegates.notNull<Float>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        money = requireArguments().getParcelable("money")!!
-        income = requireArguments().getParcelable("income")!!
-        spent = requireArguments().getParcelable("spent")!!
+        money = arguments?.getFloat("amount")!!
+        income = arguments?.getFloat("income")!!
+        spent = arguments?.getFloat("spent")!!
     }
 
     override fun onCreateView(
@@ -33,9 +33,10 @@ class WalletFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val money = money.amount
-        val income = income.amount
-        val spent = spent.amount
+        val income = income
+        val spent = spent
+        val money = income-spent
+
         val balance = getString(R.string.info_doub,money)
         val infoIncome = getString(R.string.info_doub,income)
         val infoSpent = getString(R.string.info_doub,spent)
