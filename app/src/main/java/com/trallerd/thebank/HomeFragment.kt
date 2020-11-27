@@ -45,23 +45,19 @@ class HomeFragment : Fragment(), View.OnClickListener {
         view.findViewById<ImageView>(R.id.btnReceiveMoney).setOnClickListener(this)
         view.findViewById<ImageView>(R.id.btnLogout).setOnClickListener(this)
     }
-    fun walletStatus(): Bundle {
-        val income = allAdapter.getIncomes(Controller.users.id!!).toFloat()
-        val spent = allAdapter.getSpent(Controller.users.id!!).toFloat()
-        val money = income-spent
-
-        val bundle = bundleOf(
-                "money" to money,
-                "income" to income,
-                "spent" to spent
-        )
-        return bundle
-    }
 
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.btnWallet->{
-                val bundle = walletStatus()
+                val income = allAdapter.getIncomes(Controller.users.id!!).toFloat()
+                val spent = allAdapter.getSpent(Controller.users.id!!).toFloat()
+                val money = income-spent
+                Log.i("AMOUNT", money.toString())
+                val bundle = bundleOf(
+                        "money" to money,
+                        "income" to income,
+                        "spent" to spent
+                )
                 navController!!.navigate(R.id.homeToWallet,bundle)
             }
             R.id.btnExtract->navController!!.navigate(R.id.homeToExtract)
@@ -69,9 +65,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 val income = allAdapter.getIncomes(Controller.users.id!!).toFloat()
                 val spent = allAdapter.getSpent(Controller.users.id!!).toFloat()
                 val money = income-spent
+                Log.i("AMOUNT", money.toString())
                 val flag = false
                 val bun = bundleOf(
                         "flag" to flag,
+                        "income" to income,
+                        "spent" to spent,
                         "money" to money
                 )
                 navController!!.navigate(R.id.homeToSendMOney,bun)
@@ -80,9 +79,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 val income = allAdapter.getIncomes(Controller.users.id!!).toFloat()
                 val spent = allAdapter.getSpent(Controller.users.id!!).toFloat()
                 val money = income-spent
+                Log.i("AMOUNT", money.toString())
                 val flag = true
                 val bun = bundleOf(
                         "flag" to flag,
+                        "income" to income,
+                        "spent" to spent,
                         "money" to money
                 )
                 navController!!.navigate(R.id.homeToSendMOney,bun)

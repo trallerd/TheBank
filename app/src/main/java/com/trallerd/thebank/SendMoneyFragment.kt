@@ -23,6 +23,8 @@ class SendMoneyFragment : Fragment(), View.OnClickListener {
     private var navController: NavController? = null
     private lateinit var allAdapter: AllAdapter
     private var flag by Delegates.notNull<Boolean>()
+    private var income by Delegates.notNull<Float>()
+    private var spent by Delegates.notNull<Float>()
     private var money by Delegates.notNull<Float>()
 
     override fun onCreateView(
@@ -36,7 +38,9 @@ class SendMoneyFragment : Fragment(), View.OnClickListener {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        money = arguments?.getFloat("bundle")!!
+        income = arguments?.getFloat("income")!!
+        spent = arguments?.getFloat("spent")!!
+        money = arguments?.getFloat("money")!!
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -78,6 +82,8 @@ class SendMoneyFragment : Fragment(), View.OnClickListener {
                         val fk = Controller.users.id
                         val person = recipientAnswer.text.toString()
                         val received = false
+                        Log.i("AMOUNT", money.toString())
+
                         if (money>=amount){
                             val record = Records(amount,person,remarks,received,fk)
                             allAdapter.insertRecord(record)
