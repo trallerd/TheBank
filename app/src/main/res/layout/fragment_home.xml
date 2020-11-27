@@ -29,7 +29,7 @@
         android:fontFamily="cursive"
         android:gravity="center"
         android:text="@string/the_bank"
-        android:textColor="#008000"
+        android:textColor="@color/green"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/theBankHome"

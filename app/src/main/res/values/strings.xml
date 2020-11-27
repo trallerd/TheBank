@@ -20,7 +20,7 @@
     <string name="amount">Amount</string>
     <string name="send_to">Send To</string>
     <string name="info_str">%1$s</string>
-    <string name="info_doub">%1$d</string>
+    <string name="info_doub">%1$.2f</string>
     <string name="home">Back to Home</string>
     <string name="view_extract">View Extract</string>
     <string name="total_money">Balance</string>
@@ -29,4 +29,9 @@
     <string name="send_money_to">Who you want send money to?</string>
     <string name="recipient">Recipient</string>
     <string name="remarks">Remarks</string>
+    <string name="field_message">Please, complete all fields!!</string>
+    <string name="password_match">Passwords don\'t appear match!!</string>
+    <string name="user_error">User doesn\'t exist!!</string>
+    <string name="plus_btn">"Add "</string>
+    <string name="txt_balance">Balance</string>
 </resources>

@@ -1,17 +1,13 @@
 package com.trallerd.thebank.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
 class Users(
-    var userName: String,
+    var username: String,
     var password: String
-) {
-    companion object{
-        fun getALL(): List<Users>{
-            return listOf(
-                Users("Jess","1234"),
-                Users("Lola","5678"),
-                Users("Bel","3256"),
-                Users("Kika","1245")
-            )
-        }
-    }
+)  {
+    @PrimaryKey(autoGenerate = true)
+    var id: Long? = null
 }

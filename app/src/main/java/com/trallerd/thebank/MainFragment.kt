@@ -25,7 +25,7 @@ class MainFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View){
-        when(v!!.id){
+        when(v.id){
             R.id.btLoginBank->navController!!.navigate(R.id.mainToLogin)
             R.id.btSignInBank->navController!!.navigate(R.id.mainToSignIn)
         }
