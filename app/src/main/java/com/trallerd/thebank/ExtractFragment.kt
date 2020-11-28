@@ -35,13 +35,14 @@ class ExtractFragment : Fragment(), View.OnClickListener {
 
     }
 
+
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.btnSearch->{
                 val name = txtSearch.text.toString()
-                allAdapter.search(name)
+                    allAdapter.search(name)
+                }
 
             }
         }
     }
-}

@@ -26,13 +26,14 @@
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="1dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/search"
         android:inputType="textPersonName"
+        android:textColor="@color/cardview_shadow_start_color"
         android:textColorHint="@color/cardview_shadow_start_color"
         app:layout_constraintBottom_toTopOf="@+id/listRecords"
-        app:layout_constraintStart_toStartOf="parent"
-        android:autofillHints="" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnSearch"

@@ -13,7 +13,6 @@ import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.trallerd.thebank.adapters.AllAdapter
-import com.trallerd.thebank.database.Controller
 import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : Fragment(), View.OnClickListener{

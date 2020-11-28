@@ -2,8 +2,6 @@ package com.trallerd.thebank.adapters
 
 import android.content.Context
 import android.graphics.Color
-import android.service.controls.Control
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +22,7 @@ class AllAdapter(context: Context?) : RecyclerView.Adapter<AllAdapter.RecorsHold
     private val daoRecords: RecordsDAO
     private val daoUsers: UsersDAO
     private var recordEdit: Records? = null
-    private val records: MutableList<Records>
+    private var records: List<Records>
 
     init {
         //Create db instance
@@ -40,9 +38,9 @@ class AllAdapter(context: Context?) : RecyclerView.Adapter<AllAdapter.RecorsHold
         daoUsers = db.userDAO()
         //Get all Records
         if (Controller.users.id != null) {
-            records = Controller.users.id?.let { daoRecords.getAllById(it).toMutableList() }!!
+            records = Controller.users.id?.let { daoRecords.getAllById(it) }!!
         } else {
-            records = daoRecords.getAll().toMutableList()
+            records = emptyList()
         }
     }
 
@@ -50,7 +48,10 @@ class AllAdapter(context: Context?) : RecyclerView.Adapter<AllAdapter.RecorsHold
         user.id = daoUsers.insert(user)
     }
 
-    fun search(name: String) = daoRecords.getAllByName(name)
+    fun search(name: String) {
+        records = daoRecords.getAllByName(name)
+        notifyDataSetChanged()
+    }
 
     fun login(username: String, password: String): Users {
         val user = daoUsers.getUser(username, password)
