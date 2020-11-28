@@ -40,12 +40,13 @@
             app:layout_constraintEnd_toStartOf="@+id/okEdit"
             app:layout_constraintTop_toTopOf="@+id/editRecipient" />
 
-        <TextView
+        <EditText
             android:id="@+id/editRemarks"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="110dp"
+            android:layout_height="45dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="15dp"
+            android:autofillHints=""
             android:text="@string/remarks"
             android:textColor="@color/cardview_shadow_start_color"
             android:textSize="14sp"
@@ -71,8 +72,8 @@
 
         <ImageView
             android:id="@+id/okEdit"
-            android:layout_width="55sp"
-            android:layout_height="55sp"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
