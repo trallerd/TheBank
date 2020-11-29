@@ -28,12 +28,12 @@ class AllAdapter(context: Context?) : RecyclerView.Adapter<AllAdapter.RecorsHold
     init {
         //Create db instance
         val db = Room.databaseBuilder(
-                context!!,
-                AppDatabase::class.java,
-                "theBank-db"
+            context!!,
+            AppDatabase::class.java,
+            "theBank-db"
         )
-                .allowMainThreadQueries()
-                .build()
+            .allowMainThreadQueries()
+            .build()
         //Get DAO
         daoRecords = db.recordDAO()
         daoUsers = db.userDAO()
@@ -57,6 +57,11 @@ class AllAdapter(context: Context?) : RecyclerView.Adapter<AllAdapter.RecorsHold
         return user
     }
 
+    fun search(name: String) {
+        records = daoRecords.getAllByName(name)
+        notifyDataSetChanged();
+    }
+
 
     fun getIncomes(idUser: Long) = daoRecords.getWallet(idUser, 1)
 
@@ -68,15 +73,16 @@ class AllAdapter(context: Context?) : RecyclerView.Adapter<AllAdapter.RecorsHold
     fun edit(record: Records) {
         recordEdit = record
         val position = records.indexOf(record)
-        notifyItemChanged(position,record)
+        notifyItemChanged(position, record)
     }
 
-    fun saveRec(record: Records){
+    fun saveRec(record: Records) {
         daoRecords.update(record)
         val position = records.indexOf(record)
         recordEdit = null
         notifyItemChanged(position)
     }
+
     override fun getItemCount(): Int {
         return records.size
     }
@@ -92,13 +98,12 @@ class AllAdapter(context: Context?) : RecyclerView.Adapter<AllAdapter.RecorsHold
         }
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-            RecorsHolder(
-                    LayoutInflater
-                            .from(parent.context)
-                            .inflate(viewType, parent, true)
-            )
+        RecorsHolder(
+            LayoutInflater
+                .from(parent.context)
+                .inflate(viewType, parent, false)
+        )
 
     override fun onBindViewHolder(holder: RecorsHolder, position: Int) {
         val record = records[position]

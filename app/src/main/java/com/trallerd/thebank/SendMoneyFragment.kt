@@ -36,6 +36,7 @@ class SendMoneyFragment : Fragment(), View.OnClickListener {
         allAdapter = AllAdapter(this.context)
         return inflater.inflate(R.layout.fragment_send_money, container, false)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         income = arguments?.getFloat("income")!!
@@ -46,7 +47,7 @@ class SendMoneyFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        if (flag){
+        if (flag) {
             txtSendorRec.text = getString(R.string.receive_text_question)
             recipientAnswer.hint = getString(R.string.receive_from)
             btnSend.text = getString(R.string.receive_money)
@@ -54,28 +55,32 @@ class SendMoneyFragment : Fragment(), View.OnClickListener {
         view.findViewById<Button>(R.id.btnSend).setOnClickListener(this)
         view.findViewById<Button>(R.id.btnCancel).setOnClickListener(this)
     }
+
     override fun onClick(v: View?) {
-        when(v!!.id){
-            R.id.btnSend->{
-                if(!TextUtils.isEmpty(amountAnswer.text.toString())||!TextUtils.isEmpty(recipientAnswer.text.toString())){
-                    if(flag){
+        when (v!!.id) {
+            R.id.btnSend -> {
+                if (!TextUtils.isEmpty(amountAnswer.text.toString()) || !TextUtils.isEmpty(
+                        recipientAnswer.text.toString()
+                    )
+                ) {
+                    if (flag) {
 
                         val amount = amountAnswer.text.toString().toFloat()
                         val remarks = ""
                         val fk = Controller.users.id
                         val person = recipientAnswer.text.toString()
                         val received = true
-                        val record = Records(amount,person,remarks,received,fk)
+                        val record = Records(amount, person, remarks, received, fk)
                         allAdapter.insertRecord(record)
                         val bundle = bundleOf(
-                                "date" to record.registredAt,
-                                "amount" to amount,
-                                "sendTo" to person,
-                                "flag" to flag
+                            "date" to record.registredAt,
+                            "amount" to amount,
+                            "sendTo" to person,
+                            "flag" to flag
                         )
                         navController!!.navigate(R.id.sendToConfirmatio, bundle)
 
-                    }else{
+                    } else {
 
                         val amount = amountAnswer.text.toString().toFloat()
                         val remarks = ""
@@ -84,25 +89,26 @@ class SendMoneyFragment : Fragment(), View.OnClickListener {
                         val received = false
                         Log.i("AMOUNT", money.toString())
 
-                        if (money>=amount){
-                            val record = Records(amount,person,remarks,received,fk)
+                        if (money >= amount) {
+                            val record = Records(amount, person, remarks, received, fk)
                             allAdapter.insertRecord(record)
                             val bundle = bundleOf(
-                                    "date" to record.registredAt,
-                                    "amount" to amount,
-                                    "sendTo" to person,
-                                    "flag" to flag
+                                "date" to record.registredAt,
+                                "amount" to amount,
+                                "sendTo" to person,
+                                "flag" to flag
                             )
                             navController!!.navigate(R.id.sendToConfirmatio, bundle)
-                        }else{
-                            Toast.makeText(activity,R.string.not_enough_money, Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(activity, R.string.not_enough_money, Toast.LENGTH_SHORT)
+                                .show()
                         }
                     }
-                }else{
-                    Toast.makeText(activity,R.string.field_message,Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(activity, R.string.field_message, Toast.LENGTH_SHORT).show()
                 }
             }
-            R.id.btnCancel->activity?.onBackPressed()
+            R.id.btnCancel -> activity?.onBackPressed()
         }
     }
 }

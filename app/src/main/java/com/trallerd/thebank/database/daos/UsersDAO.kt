@@ -13,7 +13,7 @@ interface UsersDAO {
     fun getUser(username: String, password: String): Users
 
     @Insert
-    fun insert(user: Users):Long
+    fun insert(user: Users): Long
 
     @Delete
     fun delete(user: Users)

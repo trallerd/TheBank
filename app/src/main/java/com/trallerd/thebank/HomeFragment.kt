@@ -29,8 +29,8 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         allAdapter = AllAdapter(this.context)
@@ -59,9 +59,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 val money = income - spent
                 Log.i("AMOUNT", money.toString())
                 val bundle = bundleOf(
-                        "money" to money,
-                        "income" to income,
-                        "spent" to spent
+                    "money" to money,
+                    "income" to income,
+                    "spent" to spent
                 )
                 navController!!.navigate(R.id.homeToWallet, bundle)
             }
@@ -73,10 +73,10 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 Log.i("AMOUNT", money.toString())
                 val flag = false
                 val bun = bundleOf(
-                        "flag" to flag,
-                        "income" to income,
-                        "spent" to spent,
-                        "money" to money
+                    "flag" to flag,
+                    "income" to income,
+                    "spent" to spent,
+                    "money" to money
                 )
                 navController!!.navigate(R.id.homeToSendMOney, bun)
             }
@@ -87,10 +87,10 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 Log.i("AMOUNT", money.toString())
                 val flag = true
                 val bun = bundleOf(
-                        "flag" to flag,
-                        "income" to income,
-                        "spent" to spent,
-                        "money" to money
+                    "flag" to flag,
+                    "income" to income,
+                    "spent" to spent,
+                    "money" to money
                 )
                 navController!!.navigate(R.id.homeToSendMOney, bun)
             }

@@ -35,11 +35,11 @@ class WalletFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         val income = income
         val spent = spent
-        val money = income-spent
+        val money = income - spent
 
-        val balance = getString(R.string.info_doub,money)
-        val infoIncome = getString(R.string.info_doub,income)
-        val infoSpent = getString(R.string.info_doub,spent)
+        val balance = getString(R.string.info_doub, money)
+        val infoIncome = getString(R.string.info_doub, income)
+        val infoSpent = getString(R.string.info_doub, spent)
 
         navController = Navigation.findNavController(view)
         view.findViewById<TextView>(R.id.balanceAmount).text = balance
@@ -50,9 +50,9 @@ class WalletFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        when(v!!.id){
-            R.id.btnVExtractWallet->navController!!.navigate(R.id.walletToExtract)
-            R.id.btnHomeWallet->activity?.onBackPressed()
+        when (v!!.id) {
+            R.id.btnVExtractWallet -> navController!!.navigate(R.id.walletToExtract)
+            R.id.btnHomeWallet -> activity?.onBackPressed()
         }
     }
 }

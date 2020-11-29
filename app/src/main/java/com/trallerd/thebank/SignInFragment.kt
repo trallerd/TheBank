@@ -34,23 +34,24 @@ class SignInFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        when(v!!.id){
-            R.id.btCreate->{
-                if (!TextUtils.isEmpty(newUsername.text.toString())||
-                        !TextUtils.isEmpty(newPassword.text.toString())||
-                        !TextUtils.isEmpty(confirmPassword.text.toString())){
-                            if (newPassword.text.toString()!=confirmPassword.text.toString()){
-                                Toast.makeText(activity,R.string.password_match, Toast.LENGTH_SHORT).show()
-                            }else{
-                                val user = Users(newUsername.text.toString(),newPassword.text.toString())
-                                allAdapter.add(user)
-                                navController!!.navigate(R.id.signInToLogin)
-                            }
-                }else{
-                    Toast.makeText(activity,R.string.field_message, Toast.LENGTH_SHORT).show()
+        when (v!!.id) {
+            R.id.btCreate -> {
+                if (!TextUtils.isEmpty(newUsername.text.toString()) ||
+                    !TextUtils.isEmpty(newPassword.text.toString()) ||
+                    !TextUtils.isEmpty(confirmPassword.text.toString())
+                ) {
+                    if (newPassword.text.toString() != confirmPassword.text.toString()) {
+                        Toast.makeText(activity, R.string.password_match, Toast.LENGTH_SHORT).show()
+                    } else {
+                        val user = Users(newUsername.text.toString(), newPassword.text.toString())
+                        allAdapter.add(user)
+                        navController!!.navigate(R.id.signInToLogin)
+                    }
+                } else {
+                    Toast.makeText(activity, R.string.field_message, Toast.LENGTH_SHORT).show()
                 }
             }
-            R.id.btCancel->activity?.onBackPressed()
+            R.id.btCancel -> activity?.onBackPressed()
         }
     }
 }

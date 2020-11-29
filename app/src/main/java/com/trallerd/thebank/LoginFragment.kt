@@ -23,8 +23,8 @@ class LoginFragment : Fragment(), View.OnClickListener {
     private var navController: NavController? = null
     private lateinit var allAdapter: AllAdapter
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         allAdapter = AllAdapter(this.context)
         return inflater.inflate(R.layout.fragment_login, container, false)
@@ -38,11 +38,11 @@ class LoginFragment : Fragment(), View.OnClickListener {
         if (pref?.getString("username", null) != null) {
             Log.i("AAA", "to aqui")
             allAdapter.login(
-                    pref.getString("username", "").toString(),
-                    pref.getString("password", "").toString()
+                pref.getString("username", "").toString(),
+                pref.getString("password", "").toString()
             )
             val bundle = bundleOf(
-                    "user" to pref.getString("username", "")
+                "user" to pref.getString("username", "")
             )
 
             navController!!.navigate(R.id.loginToHome, bundle)

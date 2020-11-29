@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 class Users(
     var username: String,
     var password: String
-)  {
+) {
     @PrimaryKey(autoGenerate = true)
     var id: Long? = null
 

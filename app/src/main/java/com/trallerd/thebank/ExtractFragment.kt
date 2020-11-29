@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -18,8 +19,8 @@ class ExtractFragment : Fragment() {
     var navController: NavController? = null
     private lateinit var allAdapter: AllAdapter
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_extract, container, false)
     }
@@ -29,7 +30,15 @@ class ExtractFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         allAdapter = AllAdapter(context)
         view.listRecords.adapter = AllAdapter(context)
-        view.listRecords.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        view.listRecords.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        searchBtn.setOnClickListener {
+            val name = searchTxt.text.toString()
+            if (name != null) {
+                allAdapter.search(name)
+            }
+        }
     }
+
 
 }

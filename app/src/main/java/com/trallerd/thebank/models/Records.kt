@@ -9,18 +9,18 @@ import java.util.*
 
 @Entity
 class Records(
-        var value: Float,
-        var person: String,
-        var remarks: String,
-        var receive: Boolean = false,
-        @ForeignKey(
+    var value: Float,
+    var person: String,
+    var remarks: String,
+    var receive: Boolean = false,
+    @ForeignKey(
         entity = Users::class,
         parentColumns = ["id"],
         childColumns = ["fk_user"]
     )
     @ColumnInfo(name = "fk_user")
-        var fkUser: Long?,
-        var registredAt: String = SimpleDateFormat("dd/MM/yyyy HH:mm").format(Date())
+    var fkUser: Long?,
+    var registredAt: String = SimpleDateFormat("dd/MM/yyyy HH:mm").format(Date())
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Long? = null

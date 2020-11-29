@@ -14,7 +14,7 @@ import com.trallerd.thebank.database.Controller
 import kotlinx.android.synthetic.main.fragment_confirmation.*
 import kotlin.properties.Delegates
 
-class ConfirmationFragment : Fragment(), View.OnClickListener{
+class ConfirmationFragment : Fragment(), View.OnClickListener {
     private var navController: NavController? = null
     private lateinit var allAdapter: AllAdapter
     private lateinit var date: String
@@ -36,12 +36,12 @@ class ConfirmationFragment : Fragment(), View.OnClickListener{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
-        if (flag){
+        if (flag) {
             confirmTransaction.text = getString(R.string.receive_from)
         }
-        val date = getString(R.string.info_str,date)
-        val amount =  getString(R.string.info_doub,amount)
-        val sendTo = getString(R.string.info_str,name)
+        val date = getString(R.string.info_str, date)
+        val amount = getString(R.string.info_doub, amount)
+        val sendTo = getString(R.string.info_str, name)
         confirmaDate.text = date
         confirmAmount.text = amount
         confirmName.text = sendTo
@@ -50,15 +50,15 @@ class ConfirmationFragment : Fragment(), View.OnClickListener{
     }
 
     override fun onClick(v: View?) {
-        when(v!!.id){
-            R.id.btnVExtract->{
+        when (v!!.id) {
+            R.id.btnVExtract -> {
 
                 navController!!.navigate(R.id.confirmToExtract)
             }
-            R.id.btnHome->{
+            R.id.btnHome -> {
                 val user = Controller.users.username
                 val bundle = bundleOf(
-                        "user" to user
+                    "user" to user
                 )
                 navController!!.navigate(R.id.confirmToHome, bundle)
             }
