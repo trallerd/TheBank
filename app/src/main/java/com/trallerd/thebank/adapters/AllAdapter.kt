@@ -2,6 +2,7 @@ package com.trallerd.thebank.adapters
 
 import android.content.Context
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,11 +49,6 @@ class AllAdapter(context: Context?) : RecyclerView.Adapter<AllAdapter.RecorsHold
         user.id = daoUsers.insert(user)
     }
 
-    fun search(name: String) {
-        records = daoRecords.getAllByName(name)
-        notifyDataSetChanged()
-    }
-
     fun login(username: String, password: String): Users {
         val user = daoUsers.getUser(username, password)
         if (user != null) {
@@ -96,11 +92,12 @@ class AllAdapter(context: Context?) : RecyclerView.Adapter<AllAdapter.RecorsHold
         }
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             RecorsHolder(
                     LayoutInflater
                             .from(parent.context)
-                            .inflate(viewType, parent, false)
+                            .inflate(viewType, parent, true)
             )
 
     override fun onBindViewHolder(holder: RecorsHolder, position: Int) {

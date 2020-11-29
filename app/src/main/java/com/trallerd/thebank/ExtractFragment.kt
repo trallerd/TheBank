@@ -14,35 +14,22 @@ import kotlinx.android.synthetic.main.fragment_extract.*
 import kotlinx.android.synthetic.main.fragment_extract.view.*
 
 
-class ExtractFragment : Fragment(), View.OnClickListener {
+class ExtractFragment : Fragment() {
     var navController: NavController? = null
     private lateinit var allAdapter: AllAdapter
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
-        allAdapter = AllAdapter(this.context)
-        val view = inflater.inflate(R.layout.fragment_extract, container, false)
-        view.listRecords.adapter = AllAdapter(this.context)
-        view.listRecords.layoutManager = LinearLayoutManager(this.context,LinearLayoutManager.VERTICAL,false)
-        return view
+        return inflater.inflate(R.layout.fragment_extract, container, false)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        navController = Navigation.findNavController(view)
-        view.findViewById<Button>(R.id.btnSearch).setOnClickListener(this)
-
+        allAdapter = AllAdapter(context)
+        view.listRecords.adapter = AllAdapter(context)
+        view.listRecords.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
 
-
-    override fun onClick(v: View?) {
-        when(v!!.id){
-            R.id.btnSearch->{
-                val name = txtSearch.text.toString()
-                    allAdapter.search(name)
-                }
-
-            }
-        }
-    }
+}

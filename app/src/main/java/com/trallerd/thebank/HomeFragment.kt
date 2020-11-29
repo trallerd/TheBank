@@ -1,18 +1,22 @@
 package com.trallerd.thebank
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.trallerd.thebank.adapters.AllAdapter
 import com.trallerd.thebank.database.Controller
+import kotlinx.android.synthetic.main.fragment_login.*
+
 
 class HomeFragment : Fragment(), View.OnClickListener {
     var navController: NavController? = null
@@ -33,11 +37,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         val name = user
-        val welcome = getString(R.string.welcome_text,name)
+        val welcome = getString(R.string.welcome_text, name)
         view.findViewById<TextView>(R.id.welcomeText).text = welcome
         view.findViewById<ImageView>(R.id.btnWallet).setOnClickListener(this)
         view.findViewById<ImageView>(R.id.btnExtract).setOnClickListener(this)
@@ -47,24 +52,24 @@ class HomeFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        when(v!!.id){
-            R.id.btnWallet->{
+        when (v!!.id) {
+            R.id.btnWallet -> {
                 val income = allAdapter.getIncomes(Controller.users.id!!).toFloat()
                 val spent = allAdapter.getSpent(Controller.users.id!!).toFloat()
-                val money = income-spent
+                val money = income - spent
                 Log.i("AMOUNT", money.toString())
                 val bundle = bundleOf(
                         "money" to money,
                         "income" to income,
                         "spent" to spent
                 )
-                navController!!.navigate(R.id.homeToWallet,bundle)
+                navController!!.navigate(R.id.homeToWallet, bundle)
             }
-            R.id.btnExtract->navController!!.navigate(R.id.homeToExtract)
-            R.id.btnSenMoney->{
+            R.id.btnExtract -> navController!!.navigate(R.id.homeToExtract)
+            R.id.btnSenMoney -> {
                 val income = allAdapter.getIncomes(Controller.users.id!!).toFloat()
                 val spent = allAdapter.getSpent(Controller.users.id!!).toFloat()
-                val money = income-spent
+                val money = income - spent
                 Log.i("AMOUNT", money.toString())
                 val flag = false
                 val bun = bundleOf(
@@ -73,12 +78,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
                         "spent" to spent,
                         "money" to money
                 )
-                navController!!.navigate(R.id.homeToSendMOney,bun)
+                navController!!.navigate(R.id.homeToSendMOney, bun)
             }
-            R.id.btnReceiveMoney->{
+            R.id.btnReceiveMoney -> {
                 val income = allAdapter.getIncomes(Controller.users.id!!).toFloat()
                 val spent = allAdapter.getSpent(Controller.users.id!!).toFloat()
-                val money = income-spent
+                val money = income - spent
                 Log.i("AMOUNT", money.toString())
                 val flag = true
                 val bun = bundleOf(
@@ -87,13 +92,23 @@ class HomeFragment : Fragment(), View.OnClickListener {
                         "spent" to spent,
                         "money" to money
                 )
-                navController!!.navigate(R.id.homeToSendMOney,bun)
+                navController!!.navigate(R.id.homeToSendMOney, bun)
             }
-            R.id.btnLogout->{
+            R.id.btnLogout -> {
+                val pref = activity?.getSharedPreferences("user", Context.MODE_PRIVATE)
+                val edt = pref?.edit()
+                edt?.putString("username", null)
+                edt?.putString("password", null)
+                edt?.commit()
+
                 Controller.users.password = ""
                 Controller.users.username = ""
                 Controller.users.id = null
-                activity?.onBackPressed()
+
+                navController!!.navigate(R.id.homeToLogin)
+                val intent = Intent(activity, LoginFragment::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
             }
         }
     }
